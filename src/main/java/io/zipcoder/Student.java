@@ -27,23 +27,22 @@ public class Student implements Comparable{
         this.lastName = lastName;
     }
 
-    public ArrayList<Double> getExamScores() {
-        for (double score : examScores){
-            System.out.println("Exam " + score+1 + " -> " + examScores.get((int) score));
+    public String getExamScores() {
+        String examScoresString = "Exam Scores: " + '\n';
+
+        for (int i = 0; i < this.examScores.size(); i++) {
+            examScoresString += '\t' + "Exam " + (i+1) + " -> " + examScores.get(i) + '\n';
         }
-        return examScores;
+
+//        for (double score : examScores) {
+//            System.out.println("Exam " +  + " -> " + examScores.get((int) score));
+//        }
+        return examScoresString;
     }
     public int getNumberOfExamsTaken(){
         return examScores.size();
     }
     public void addExamScore (double examScore){
-        if (this.examScores.isEmpty()){
-            examScores.add(0,0.0);
-            examScores.add(1,0.0);
-            examScores.add(2,0.0);
-            examScores.add(3,0.0);
-        }
-
         examScores.add(examScore);
     }
     public void setExamScore (int examNumber, double newScore){
@@ -58,14 +57,7 @@ public class Student implements Comparable{
             sum = sum + examScores.get((int) score);
         }
         return sum/examScores.size();
-    }
 
-    @Override
-    public String toString() {
-        return "Student Name: " +
-                "firstName='" + firstName + lastName+ '\n' +
-                "> Average Score: " + getAverageExamScore() + '\n' +
-                getExamScores();
     }
 
     @Override
