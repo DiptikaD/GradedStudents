@@ -13,6 +13,11 @@ public class Student implements Comparable{
         this.examScores = examScores;
     }
 
+    public Student() {
+        ArrayList<Double> scores = new ArrayList<>(5);
+        examScores = scores;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -53,15 +58,33 @@ public class Student implements Comparable{
         if (examScores.isEmpty()){
             return 0.0;
         }
-        for (double score : examScores){
-            sum = sum + examScores.get((int) score);
+        for (int i = 0; i < examScores.size(); i++){
+            sum = sum + examScores.get(i);
         }
-        return sum/examScores.size();
+        return sum / examScores.size();
+    }
 
+    @Override
+    public String toString() {
+        return "Student Name:" +
+                "firstName='" + firstName  +
+                ", lastName='" + lastName + '\n' +
+                " Average Score: " + getAverageExamScore() + '\n' +
+                getExamScores();
     }
 
     @Override
     public int compareTo(Object otherStudents) {
-        return 0;
+        Student otherStudent = (Student) otherStudents;
+        if (this.getAverageExamScore() > otherStudent.getAverageExamScore()) {
+            return 1;
+        } else if (this.getAverageExamScore() == otherStudent.getAverageExamScore()) {
+
+            return 0;
+        }
+        return -1;
+
+        //use this to compare the examscores
+        //compare one student's examscore to another
     }
 }

@@ -96,6 +96,22 @@ public class StudentTest extends TestCase {
         score.add(1, 40.1);
 
         Student student = new Student("Stinky", "McStinky", score);
-        Assert.assertEquals(30.1, student.getAverageExamScore());
+        Assert.assertEquals(30.1, student.getAverageExamScore(), 0.5);
     }
+
+    public void testTestToString() {
+        ArrayList<Double> score = new ArrayList<Double>();
+        score.add(0, 20.1);
+        score.add(1, 40.1);
+
+        Student student = new Student("Stinky", "McStinky", score);
+
+        String expected = "Student Name:" +
+                "firstName='" + student.getFirstName()  +
+                ", lastName='" + student.getLastName() + '\n' +
+                " Average Score: " + student.getAverageExamScore() + '\n' +
+                student.getExamScores();
+        Assert.assertEquals(expected, student.toString());
+    }
+
 }
